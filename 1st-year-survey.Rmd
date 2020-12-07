@@ -26,7 +26,7 @@ first <- readr::read_csv('data/survey.csv')
 
 ### Data Cleaning
 
-```{r}
+```{r, include = FALSE}
 newfirst <- first %>% 
   mutate(college = `Are you enrolled in Trinity College of Arts and Sciences or the Pratt School of Engineering?`,
          hispanic = `Are you of Hispanic/Latino/Spanish origin?`,
@@ -105,11 +105,11 @@ newfirst <- first %>%
          chronicle = `In which format do you read The Chronicle?`)
 ```
 
-```{r}
+```{r, include = FALSE}
 newfirst
 ```
 
-```{r religion-and-pres, fig.height=6, fig.width=7}
+```{r religion-and-pres, fig.height=6, fig.width=7, echo = FALSE}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(president,levels=c("Howie Hawkins", "Jo Jorgenson", "Joe Biden","Donald Trump"))), fill = religion))+
   geom_bar(position= "fill") +
@@ -120,7 +120,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r religiousity-and-pres, fig.height=6, fig.width=7}
+```{r religiousity-and-pres, fig.height=6, fig.width=7, echo = FALSE}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(president ,levels=c("Howie Hawkins", "Jo Jorgenson", "Joe Biden","Donald Trump"))), fill = (factor(howreligious ,levels=c("Not at all religious", "Not very religious", "Somewhat religious", "Religious", "Very religious")))))+
   geom_bar(position= "fill") +
@@ -131,7 +131,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r home-and-pres-vote, fig.height=6, fig.width=7}
+```{r home-and-pres-vote, fig.height=6, fig.width=7, echo = FALSE}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = wherevote, fill = president))+
   geom_bar(position= "fill") +
@@ -141,7 +141,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r firstchoice-and-religion, fig.height=6, fig.width=7}
+```{r firstchoice-and-religion, fig.height=6, fig.width=7, echo = FALSE}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(howreligious ,levels=c("Not at all religious", "Not very religious", "Somewhat religious", "Religious", "Very religious"))), fill = firstchoice))+
   geom_bar(position= "fill") +
@@ -151,7 +151,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r polleaning and religion, fig.height=6, fig.width=7}
+```{r polleaning and religion, fig.height=6, fig.width=7, echo = FALSE}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), fill = (factor(howreligious ,levels=c("Not at all religious", "Not very religious", "Somewhat religious", "Religious", "Very religious")))))+
   geom_bar(position= "fill") +
@@ -162,7 +162,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r income and pres vote, fig.height=6, fig.width=7}
+```{r income and pres vote, fig.height=6, fig.width=7, echo = FALSE}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(income ,levels=c("Above $500,000","$250,000-$500,000", "$125,000-$250,000", "$80,000-$125,000","$40,000-$80,000", "Below $40,000"))), fill = president))+
   geom_bar(position= "fill") +
@@ -172,7 +172,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r income and greek, fig.height=6, fig.width=7}
+```{r income and greek, fig.height=6, fig.width=7, echo = FALSE}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(greek ,levels=c("Extremely interested", "Very interested", "Moderately interested", "Slightly interested", "Not interested at all"))), fill = (factor(income ,levels=c("Above $500,000","$250,000-$500,000", "$125,000-$250,000", "$80,000-$125,000","$40,000-$80,000", "Below $40,000")))))+
   geom_bar(position= "fill") +
@@ -183,7 +183,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r legacy-and-politicalleaning, fig.height=6, fig.width=7}
+```{r legacy-and-politicalleaning, fig.height=6, fig.width=7, echo = FALSE}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), fill = legacy))+
   geom_bar(position= "fill") +
@@ -193,7 +193,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r legacy-and-income, fig.height=6, fig.width=7}
+```{r legacy-and-income, fig.height=6, fig.width=7, echo = FALSE}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = legacy, fill = (factor(income ,levels=c("Above $500,000","$250,000-$500,000", "$125,000-$250,000", "$80,000-$125,000","$40,000-$80,000", "Below $40,000")))))+
   geom_bar(position= "fill") +
@@ -204,7 +204,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r political leaning and sexual orientation, fig.height=6, fig.width=7}
+```{r political leaning and sexual orientation, fig.height=6, fig.width=7, echo = FALSE, include = FALSE}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), fill = sexor))+
   geom_bar(position= "fill") +
@@ -214,7 +214,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r political leaning and fin aid, fig.height=6, fig.width=7}
+```{r political leaning and fin aid, fig.height=6, fig.width=7, echo = FALSE}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), fill = finaid))+
   geom_bar(position= "fill") +
@@ -224,7 +224,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r pres vote and fin aid status, fig.height=6, fig.width=7}
+```{r pres vote and fin aid status, fig.height=6, fig.width=7, echo = FALSE}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(president,levels=c("Howie Hawkins", "Jo Jorgenson", "Joe Biden","Donald Trump"))), fill = finaid))+
   geom_bar(position= "fill") +
@@ -234,7 +234,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r major and political leaning, fig.height=6, fig.width=7}
+```{r major and political leaning, fig.height=6, fig.width=7, echo = FALSE}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = major, fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative")))))+
   geom_bar(position= "fill") +
