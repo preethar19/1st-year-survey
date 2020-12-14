@@ -24,7 +24,6 @@ library(tidyverse)
 first <- readr::read_csv('data/survey.csv')
 ```
 
-### Data Cleaning
 
 ```{r, include = FALSE}
 newfirst <- first %>% 
@@ -108,6 +107,7 @@ newfirst <- first %>%
 ```{r, include = FALSE}
 newfirst
 ```
+## Analysis
 
 ```{r religion-and-pres, fig.height=6, fig.width=7, echo = FALSE}
 newfirst %>% 
@@ -145,7 +145,7 @@ newfirst %>%
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(howreligious ,levels=c("Not at all religious", "Not very religious", "Somewhat religious", "Religious", "Very religious"))), fill = firstchoice))+
   geom_bar(position= "fill") +
-  labs(title = "x", 
+  labs(title = "was duke your first choice vs. religiousity", 
        x = "", y = "") +
   coord_flip() +
   theme_minimal()
@@ -158,6 +158,38 @@ newfirst %>%
   labs(title = "increased liberal views, decreased religiosity", 
        x = "", y = "") +
   scale_fill_discrete(name = "religiousity") +
+  coord_flip() +
+  theme_minimal()
+```
+
+```{r fig.height=6, fig.width=7, echo = FALSE}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = (factor(compactOp,levels=c("Strongly favorable", "Somewhat favorable", "No opinion", "Somewhat unfavorable", "Strongly unfavorable"))), fill = president))+
+  geom_bar(position= "fill") +
+  labs(title = "view of Duke Compact and presidential vote", 
+       x = "", y = "") +
+  coord_flip() +
+  theme_minimal()
+```
+
+```{r fig.height=6, fig.width=7, echo = FALSE}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = (factor(compactOp,levels=c("Strongly favorable", "Somewhat favorable", "No opinion", "Somewhat unfavorable", "Strongly unfavorable"))), fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative")))))+
+  geom_bar(position= "fill") +
+  labs(title = "view of Duke Compact and political leaning", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "political leaning") +
+  coord_flip() +
+  theme_minimal()
+```
+
+```{r fig.height=6, fig.width=7, echo = FALSE}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = primaryvote, fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative")))))+
+  geom_bar(position= "fill") +
+  labs(title = "did you vote in the primaries? vs political leaning", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "political leaning") +
   coord_flip() +
   theme_minimal()
 ```
@@ -293,9 +325,9 @@ newfirst %>%
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = community, fill = (factor(president,levels=c("Howie Hawkins", "Jo Jorgenson", "Joe Biden","Donald Trump")))))+
   geom_bar(position= "fill") +
-  labs(title = "community and political leaning", 
+  labs(title = "community and presidential vote", 
        x = "", y = "") +
-  scale_fill_discrete(name = "political leaning") +
+  scale_fill_discrete(name = "presidential vote") +
   coord_flip() +
   theme_minimal()
 ```
@@ -305,6 +337,17 @@ newfirst %>%
   ggplot(newfirst, mapping = aes(x = (factor(coviddeath,levels=c("Prefer not to say", "Yes", "No"))), fill = (factor(president,levels=c("Howie Hawkins", "Jo Jorgenson", "Joe Biden","Donald Trump")))))+
   geom_bar(position= "fill") +
   labs(title = "family/friend death from covid and presidential vote", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "presidential vote") +
+  coord_flip() +
+  theme_minimal()
+```
+
+```{r}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = jobloss, fill = (factor(president,levels=c("Howie Hawkins", "Jo Jorgenson", "Joe Biden","Donald Trump")))))+
+  geom_bar(position= "fill") +
+  labs(title = "job loss from covid and presidential vote", 
        x = "", y = "") +
   scale_fill_discrete(name = "presidential vote") +
   coord_flip() +
@@ -326,7 +369,7 @@ newfirst %>%
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = college, fill = (factor(political, levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative")))))+
   geom_bar(position= "fill") +
-  labs(title = "community and political leaning", 
+  labs(title = "college and political leaning", 
        x = "", y = "") +
   scale_fill_discrete(name = "political leaning") +
   coord_flip() +
@@ -337,7 +380,7 @@ newfirst %>%
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(political, levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), fill = whyduke))+
   geom_bar(position= "fill") +
-  labs(title = "x", 
+  labs(title = "why duke and political leaning", 
        x = "", y = "") +
   coord_flip() +
   theme_minimal()
@@ -348,6 +391,39 @@ newfirst %>%
   ggplot(newfirst, mapping = aes(fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), x = (factor(report, levels =c("Very likely", "Moderately likely", "Neither likely nor unlikely","Moderately unlikely", "Very unlikely")))))+
   geom_bar(position= "fill") +
   labs(title = "likelihood of reporting compact violations & political leaning", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "political leaning") +
+  coord_flip() +
+  theme_minimal()
+```
+
+```{r fig.height=6, fig.width=7, echo = FALSE}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), x = (factor(wearmask, levels=c("Very likely", "Moderately Likely", "Neither likely or unlikely")))))+
+  geom_bar(position= "fill") +
+  labs(title = "likelihood of wearing a mask vs. political leaning", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "political leaning") +
+  coord_flip() +
+  theme_minimal()
+```
+
+```{r fig.height=6, fig.width=7, echo = FALSE}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), x = (factor(usesymmon, levels=c("Very likely", "Moderately Likely", "Neither likely or unlikely", "Moderately unlikely")))))+
+  geom_bar(position= "fill") +
+  labs(title = "likelihood of using symmon vs. political leaning", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "political leaning") +
+  coord_flip() +
+  theme_minimal()
+```
+
+```{r fig.height=6, fig.width=7, echo = FALSE}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), x = (factor(avoidgather, levels =c("Very likely", "Moderately Likely", "Neither likely nor unlikely","Moderately unlikely", "Very unlikely")))))+
+  geom_bar(position= "fill") +
+  labs(title = "likelihood of avoiding gatherings vs. political leaning", 
        x = "", y = "") +
   scale_fill_discrete(name = "political leaning") +
   coord_flip() +
