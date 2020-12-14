@@ -9,21 +9,18 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE, 
+                      message = FALSE)
 ```
-
-## Load Packages
 
 ```{r load-packages}
 library(tidyverse)
 ```
 
-## Load Data
-
 ```{r load-data}
 first <- readr::read_csv('data/survey.csv')
 ```
-
 
 ```{r, include = FALSE}
 newfirst <- first %>% 
@@ -172,7 +169,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r fig.height=6, fig.width=7, echo = FALSE}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(compactOp,levels=c("Strongly favorable", "Somewhat favorable", "No opinion", "Somewhat unfavorable", "Strongly unfavorable"))), fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative")))))+
   geom_bar(position= "fill") +
@@ -183,7 +180,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r fig.height=6, fig.width=7, echo = FALSE}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = primaryvote, fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative")))))+
   geom_bar(position= "fill") +
@@ -194,7 +191,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r income and pres vote, fig.height=6, fig.width=7, echo = FALSE}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(income ,levels=c("Above $500,000","$250,000-$500,000", "$125,000-$250,000", "$80,000-$125,000","$40,000-$80,000", "Below $40,000"))), fill = president))+
   geom_bar(position= "fill") +
@@ -204,7 +201,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r income and greek, fig.height=6, fig.width=7, echo = FALSE}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(greek ,levels=c("Extremely interested", "Very interested", "Moderately interested", "Slightly interested", "Not interested at all"))), fill = (factor(income ,levels=c("Above $500,000","$250,000-$500,000", "$125,000-$250,000", "$80,000-$125,000","$40,000-$80,000", "Below $40,000")))))+
   geom_bar(position= "fill") +
@@ -215,7 +212,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r legacy-and-politicalleaning, fig.height=6, fig.width=7, echo = FALSE}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), fill = legacy))+
   geom_bar(position= "fill") +
@@ -225,7 +222,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r legacy-and-income, fig.height=6, fig.width=7, echo = FALSE}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = legacy, fill = (factor(income ,levels=c("Above $500,000","$250,000-$500,000", "$125,000-$250,000", "$80,000-$125,000","$40,000-$80,000", "Below $40,000")))))+
   geom_bar(position= "fill") +
@@ -236,7 +233,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r political leaning and sexual orientation, fig.height=6, fig.width=7, echo = FALSE, include = FALSE}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), fill = sexor))+
   geom_bar(position= "fill") +
@@ -246,7 +243,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r political leaning and fin aid, fig.height=6, fig.width=7, echo = FALSE}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), fill = finaid))+
   geom_bar(position= "fill") +
@@ -256,7 +253,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r pres vote and fin aid status, fig.height=6, fig.width=7, echo = FALSE}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(president,levels=c("Howie Hawkins", "Jo Jorgenson", "Joe Biden","Donald Trump"))), fill = finaid))+
   geom_bar(position= "fill") +
@@ -266,7 +263,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r major and political leaning, fig.height=6, fig.width=7, echo = FALSE}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = major, fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative")))))+
   geom_bar(position= "fill") +
@@ -277,7 +274,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(greek ,levels=c("Extremely interested", "Very interested", "Moderately interested", "Slightly interested", "Not interested at all"))), fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative")))))+
   geom_bar(position= "fill") +
@@ -288,7 +285,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(slgs ,levels=c("Extremely interested", "Very interested", "Moderately interested", "Slightly interested", "Not interested at all"))), fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative")))))+
   geom_bar(position= "fill") +
@@ -299,7 +296,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(greek ,levels=c("Extremely interested", "Very interested", "Moderately interested", "Slightly interested", "Not interested at all"))), fill = sexor))+
   geom_bar(position= "fill") +
@@ -310,7 +307,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = community, fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative")))))+
   geom_bar(position= "fill") +
@@ -321,7 +318,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = community, fill = (factor(president,levels=c("Howie Hawkins", "Jo Jorgenson", "Joe Biden","Donald Trump")))))+
   geom_bar(position= "fill") +
@@ -332,7 +329,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(coviddeath,levels=c("Prefer not to say", "Yes", "No"))), fill = (factor(president,levels=c("Howie Hawkins", "Jo Jorgenson", "Joe Biden","Donald Trump")))))+
   geom_bar(position= "fill") +
@@ -343,7 +340,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = jobloss, fill = (factor(president,levels=c("Howie Hawkins", "Jo Jorgenson", "Joe Biden","Donald Trump")))))+
   geom_bar(position= "fill") +
@@ -354,7 +351,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r legacy-and-income, fig.height=6, fig.width=7, echo = FALSE}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = collegecoun, fill = (factor(income ,levels=c("Above $500,000","$250,000-$500,000", "$125,000-$250,000", "$80,000-$125,000","$40,000-$80,000", "Below $40,000")))))+
   geom_bar(position= "fill") +
@@ -365,7 +362,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = college, fill = (factor(political, levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative")))))+
   geom_bar(position= "fill") +
@@ -376,7 +373,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r fig.height=6, fig.width=7, echo = FALSE}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = (factor(political, levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), fill = whyduke))+
   geom_bar(position= "fill") +
@@ -386,7 +383,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r fig.height=6, fig.width=7, echo = FALSE}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), x = (factor(report, levels =c("Very likely", "Moderately likely", "Neither likely nor unlikely","Moderately unlikely", "Very unlikely")))))+
   geom_bar(position= "fill") +
@@ -397,7 +394,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r fig.height=6, fig.width=7, echo = FALSE}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), x = (factor(wearmask, levels=c("Very likely", "Moderately Likely", "Neither likely or unlikely")))))+
   geom_bar(position= "fill") +
@@ -408,7 +405,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r fig.height=6, fig.width=7, echo = FALSE}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), x = (factor(usesymmon, levels=c("Very likely", "Moderately Likely", "Neither likely or unlikely", "Moderately unlikely")))))+
   geom_bar(position= "fill") +
@@ -419,7 +416,7 @@ newfirst %>%
   theme_minimal()
 ```
 
-```{r fig.height=6, fig.width=7, echo = FALSE}
+```{r fig.height=6, fig.width=7}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), x = (factor(avoidgather, levels =c("Very likely", "Moderately Likely", "Neither likely nor unlikely","Moderately unlikely", "Very unlikely")))))+
   geom_bar(position= "fill") +
