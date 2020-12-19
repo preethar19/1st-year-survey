@@ -106,8 +106,19 @@ newfirst
 ```
 ### Analysis
 
-## More support for Trump among religiously affilicated and religious students.
+```{r fig.height=6, fig.width=7, include = FALSE}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = primaryvote, fill = (factor(political ,levels=c("Very conservative", "Somewhat conservative", "Moderate","Somewhat liberal", "Very liberal")))))+
+  geom_bar(position= "fill") +
+  labs(title = "did you vote in the primaries? vs political leaning", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "political leaning") +
+  scale_x_discrete(na.translate = FALSE) +
+  coord_flip() +
+  theme_minimal()
+```
 
+## Who are Duke's Trump and Biden voters? 
 
 ```{r religion-and-pres, fig.height=6, fig.width=7, echo = FALSE}
 newfirst %>% 
@@ -143,6 +154,298 @@ looking at support for Trump with an eye to religiosity; well over 50% of Biden
 voters identify themselves as "Not at all religious" or "Not very religious" 
 while for Trump, that number is below 40%.
 
+```{r fig.height=6, fig.width=7}
+newfirst %>% 
+  ggplot(data=subset(newfirst, !is.na(president)), mapping = aes(x = (factor(income ,levels=c("Above $500,000","$250,000-$500,000", "$125,000-$250,000", "$80,000-$125,000","$40,000-$80,000", "Below $40,000"))), fill = (factor(president ,levels=c("Donald Trump","Howie Hawkins","Joe Biden","Jo Jorgenson")))))+
+  geom_bar(position= "fill") +
+  labs(title = "income and presidential vote",
+       x = "", y = "") +
+  scale_fill_discrete(name = "presidential vote") +
+  scale_x_discrete(na.translate = FALSE) +
+  coord_flip() +
+  theme_minimal()
+```
+Biden voters are present in every income bracket and Trump voters are present
+in almost every income bracket, with a slightly greater representation in the 
+"Above $500,000" category. 
+
+```{r fig.height=6, fig.width=7}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = (factor(president ,levels=c("Joe Biden","Donald Trump"))), fill = legacy))+
+  geom_bar(position= "fill") +
+  labs(title = "political leaning and legacy status", 
+       x = "", y = "") +
+  coord_flip() +
+  scale_x_discrete(na.translate = FALSE) +
+  theme_minimal()
+```
+
+Slightly more legacy students voted for Trump, though this may be more 
+attributable to their income bracket (legacy students are overrepresented in
+higher income brackets) than their status as legacy students.
+
+```{r fig.height=6, fig.width=7}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = (factor(president ,levels=c("Joe Biden","Donald Trump"))), fill = sexor))+
+  geom_bar(position= "fill") +
+  labs(title = "political leaning and sexual orientation", 
+       x = "", y = "") +
+  coord_flip() +
+  scale_x_discrete(na.translate = FALSE) +
+  theme_minimal()
+```
+
+In our sample, about 25% of students that voted for Biden identify with a 
+sexual orientation other than "Heterosexual". 
+
+```{r fig.height=6, fig.width=7}
+newfirst %>% 
+  ggplot(data=subset(newfirst, !is.na(president)), mapping = aes(x = community, fill = (factor(president,levels=c("Donald Trump", "Howie Hawkins", "Joe Biden","Jo Jorgenson")))))+
+  geom_bar(position= "fill") +
+  labs(title = "community and presidential vote", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "presidential vote") +
+  coord_flip() +
+  scale_x_discrete(na.translate = FALSE) +
+  theme_minimal()
+```
+
+All students who voted for a candidate other than Biden came from a suburban 
+community.
+
+```{r fig.height=6, fig.width=7}
+newfirst %>% 
+  ggplot(data=subset(newfirst, !is.na(president)), mapping = aes(x = (factor(greek ,levels=c("Extremely interested", "Very interested", "Moderately interested", "Slightly interested", "Not interested at all"))), fill = (factor(president,levels=c("Donald Trump", "Howie Hawkins", "Joe Biden","Jo Jorgenson")))))+
+  geom_bar(position= "fill") +
+  labs(title = "interest in greek life & presidential vote", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "presidential vote") +
+  coord_flip() +
+  scale_x_discrete(na.translate = FALSE) +
+  theme_minimal()
+```
+
+Biden voters show varying degrees of interest in greek life while Trump voters 
+are more likely to indicate that they are "Very interested" in greek life.
+
+```{r fig.height=6, fig.width=7}
+newfirst %>% 
+  ggplot(data=subset(newfirst, !is.na(president)), mapping = aes(x = (factor(coviddeath,levels=c("Yes", "No"))), fill = (factor(president,levels=c("Donald Trump", "Jo Jorgenson", "Joe Biden","Howie Hawkins")))))+
+  geom_bar(position= "fill") +
+  labs(title = "family/friend death from covid and presidential vote", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "presidential vote") +
+  coord_flip() +
+  scale_x_discrete(na.translate = FALSE) +
+  theme_minimal()
+```
+
+Every respondent who indicated they had lost someone to COVID voted for Biden.
+
+```{r fig.height=6, fig.width=7, include = FALSE}
+newfirst %>% 
+  ggplot(data=subset(newfirst, !is.na(president)), mapping = aes(x = jobloss, fill = (factor(president,levels=c("Howie Hawkins", "Jo Jorgenson", "Joe Biden","Donald Trump")))))+
+  geom_bar(position= "fill") +
+  labs(title = "job loss from covid and presidential vote", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "presidential vote") +
+  coord_flip() +
+  scale_x_discrete(na.translate = FALSE) +
+  theme_minimal()
+```
+
+```{r fig.height=6, fig.width=7, include=FALSE}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = (factor(president,levels=c("Howie Hawkins", "Jo Jorgenson", "Joe Biden","Donald Trump"))), fill = finaid))+
+  geom_bar(position= "fill") +
+  labs(title = "presidential vote and financial aid status", 
+       x = "", y = "") +
+  coord_flip() +
+  scale_x_discrete(na.translate = FALSE) +
+  theme_minimal()
+```
+
+
+## Legacy students are more likely to indicate that they are very conservative
+
+```{r fig.height=6, fig.width=7}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), fill = legacy))+
+  geom_bar(position= "fill") +
+  labs(title = "political leaning and legacy status", 
+       x = "", y = "") +
+  coord_flip() +
+  scale_x_discrete(na.translate = FALSE) +
+  theme_minimal()
+```
+
+Of the students who indicated that they are "Very conservative," over 60% have a
+parent or sibling that attended Duke. 
+
+```{r fig.height=6, fig.width=7, include=FALSE}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = (factor(greek ,levels=c("Extremely interested", "Very interested", "Moderately interested", "Slightly interested", "Not interested at all"))), fill = (factor(income ,levels=c("Above $500,000","$250,000-$500,000", "$125,000-$250,000", "$80,000-$125,000","$40,000-$80,000", "Below $40,000")))))+
+  geom_bar(position= "fill") +
+  labs(title = "income and interest in greek life", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "income level") +
+  coord_flip() +
+  theme_minimal()
+```
+
+```{r fig.height=6, fig.width=7, include=FALSE}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = legacy, fill = (factor(income ,levels=c("Above $500,000","$250,000-$500,000", "$125,000-$250,000", "$80,000-$125,000","$40,000-$80,000", "Below $40,000")))))+
+  geom_bar(position= "fill") +
+  labs(title = "legacy status and income", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "income level") +
+  coord_flip() +
+  theme_minimal()
+```
+
+## Who are Duke's conservatives and liberals? (I hate this title too dw)
+
+```{r polleaning and religion, fig.height=6, fig.width=7, echo = FALSE}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), fill = (factor(howreligious ,levels=c("Not at all religious", "Not very religious", "Somewhat religious", "Religious", "Very religious")))))+
+  geom_bar(position= "fill") +
+  labs(title = "increased liberal views, decreased religiosity", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "religiousity") +
+  scale_x_discrete(na.translate = FALSE) +
+  coord_flip() +
+  theme_minimal()
+```
+
+Reflecting national trends, the results from our survey show that students who
+identify themselves as more liberal (on a scale of Very conservative to 
+Very liberal), also identify themselves as less religious. 
+
+```{r fig.height=6, fig.width=7}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), fill = sexor))+
+  geom_bar(position= "fill") +
+  labs(title = "political leaning and sexual orientation", 
+       x = "", y = "") +
+  coord_flip() +
+  scale_x_discrete(na.translate = FALSE) +
+  theme_minimal()
+```
+
+Students who identify as politically moderate to very liberal are more likely to 
+identify with a sexual orientation other than "heterosexual."
+
+```{r fig.height=6, fig.width=7}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), fill = finaid))+
+  geom_bar(position= "fill") +
+  labs(title = "political leaning and financial aid status", 
+       x = "", y = "") +
+  coord_flip() +
+  scale_x_discrete(na.translate = FALSE) +
+  theme_minimal()
+```
+
+Students who identify as politically moderate to very liberal are more likely to 
+be receiving some form of financial aid.
+
+```{r fig.height=6, fig.width=7, include=FALSE}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = major, fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative")))))+
+  geom_bar(position= "fill") +
+  labs(title = "intended major and political leaning", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "political leaning") +
+  coord_flip() +
+  theme_minimal()
+```
+
+```{r fig.height=6, fig.width=7, include=FALSE}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = (factor(greek ,levels=c("Extremely interested", "Very interested", "Moderately interested", "Slightly interested", "Not interested at all"))), fill = (factor(political ,levels=c("Very conservative", "Somewhat conservative", "Moderate","Somewhat liberal", "Very liberal")))))+
+  geom_bar(position= "fill") +
+  labs(title = "interest in greek life & political leaning", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "political leaning") +
+  coord_flip() +
+  theme_minimal()
+```
+
+```{r fig.height=6, fig.width=7, include=FALSE}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = (factor(slgs ,levels=c("Extremely interested", "Very interested", "Moderately interested", "Slightly interested", "Not interested at all"))), fill = (factor(political ,levels=c("Very conservative", "Somewhat conservative", "Moderate","Somewhat liberal", "Very liberal")))))+
+  geom_bar(position= "fill") +
+  labs(title = "interest in slgs & political leaning", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "political leaning") +
+  coord_flip() +
+  theme_minimal()
+```
+
+```{r fig.height=6, fig.width=7, include=FALSE}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = (factor(greek ,levels=c("Extremely interested", "Very interested", "Moderately interested", "Slightly interested", "Not interested at all"))), fill = sexor))+
+  geom_bar(position= "fill") +
+  labs(title = "interest in greek life & sexual orientation", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "political leaning") +
+  coord_flip() +
+  theme_minimal()
+```
+
+```{r fig.height=6, fig.width=7}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = community, fill = (factor(political ,levels=c("Very conservative", "Somewhat conservative", "Moderate","Somewhat liberal", "Very liberal")))))+
+  geom_bar(position= "fill") +
+  labs(title = "community and political leaning", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "political leaning") +
+  coord_flip() +
+  theme_minimal()
+```
+
+All students in our survey who identify as "Very conservative" or "Somewhat 
+conservative" come from a suburban community.
+
+```{r fig.height=6, fig.width=7, include=FALSE}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = collegecoun, fill = (factor(income ,levels=c("Above $500,000","$250,000-$500,000", "$125,000-$250,000", "$80,000-$125,000","$40,000-$80,000", "Below $40,000")))))+
+  geom_bar(position= "fill") +
+  labs(title = "hired college counselor and income", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "income level") +
+  coord_flip() +
+  theme_minimal()
+```
+
+```{r fig.height=6, fig.width=7}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = college, fill = (factor(political, levels=c("Very conservative", "Somewhat conservative", "Moderate","Somewhat liberal", "Very liberal")))))+
+  geom_bar(position= "fill") +
+  labs(title = "Trinity is slightly more liberal", 
+       x = "", y = "") +
+  scale_fill_discrete(name = "political leaning") +
+  coord_flip() +
+  theme_minimal()
+```
+
+Students who identify as "Somewhat liberal" or "Very liberal" are representative
+of over 75% of Trinity students, while the same group is approx. 60% of 
+Pratt's student body.
+
+```{r fig.height=6, fig.width=7, include=FALSE}
+newfirst %>% 
+  ggplot(newfirst, mapping = aes(x = (factor(political, levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), fill = whyduke))+
+  geom_bar(position= "fill") +
+  labs(title = "why duke and political leaning", 
+       x = "", y = "") +
+  coord_flip() +
+  theme_minimal()
+```
+
+## How do liberals/conservatives feel about the Duke Compact? (I hate this too)
+
 ```{r home-and-pres-vote, fig.height=6, fig.width=7, echo = FALSE, include = FALSE}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(x = wherevote, fill = president))+
@@ -162,27 +465,6 @@ newfirst %>%
   coord_flip() +
   theme_minimal()
 ```
-## Students who identify as more liberal also indicate decreased religiousity. 
-
-
-```{r polleaning and religion, fig.height=6, fig.width=7, echo = FALSE}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(x = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), fill = (factor(howreligious ,levels=c("Not at all religious", "Not very religious", "Somewhat religious", "Religious", "Very religious")))))+
-  geom_bar(position= "fill") +
-  labs(title = "increased liberal views, decreased religiosity", 
-       x = "", y = "") +
-  scale_fill_discrete(name = "religiousity") +
-  scale_x_discrete(na.translate = FALSE) +
-  coord_flip() +
-  theme_minimal()
-```
-
-Reflecting national trends, the results from our survey show that students who
-identify themselves as more liberal (on a scale of Very conservative to 
-Very liberal), also identify themselves as less religious. 
-
-## Moderate, Conservative students and Trump voters have a more unfavorable view of the Duke Compact
-
 
 ```{r fig.height=6, fig.width=7, echo = FALSE}
 newfirst %>% 
@@ -215,9 +497,6 @@ Compact. Similarly, students who identify themselves as somewhat or very liberal
 (on a scale of Very conservative to Very liberal) have more favorable views of 
 the Duke Compact.
 
-## Trump voters have a more unfavorable view of Duke Compact enforcement.
-
-
 ```{r fig.height=6, fig.width=7, echo = FALSE}
 newfirst %>% 
   ggplot(newfirst, mapping = aes(fill = (factor(enforcementOp,levels=c("Strongly unfavorable", "Somewhat unfavorable", "No opinion", "Somewhat favorable", "Strongly favorable"))), x = (factor(president ,levels=c("Joe Biden","Donald Trump")))))+
@@ -248,220 +527,11 @@ Students who voted for Trump have a more unfavorable view of Duke Compact
 enforcement. When view of Duke Compact is analyzed with an eye to political
 leaning, no trend is immediately evident. 
 
-
-```{r fig.height=6, fig.width=7, include = FALSE}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(x = primaryvote, fill = (factor(political ,levels=c("Very conservative", "Somewhat conservative", "Moderate","Somewhat liberal", "Very liberal")))))+
-  geom_bar(position= "fill") +
-  labs(title = "did you vote in the primaries? vs political leaning", 
-       x = "", y = "") +
-  scale_fill_discrete(name = "political leaning") +
-  scale_x_discrete(na.translate = FALSE) +
-  coord_flip() +
-  theme_minimal()
-```
-
-## Who are Duke's Trump and Biden voters? 
+## How are liberals/conservatives adhering to the Duke Compact? (I hate this too)
 
 ```{r fig.height=6, fig.width=7}
 newfirst %>% 
-  ggplot(data=subset(newfirst, !is.na(president)), mapping = aes(x = (factor(income ,levels=c("Above $500,000","$250,000-$500,000", "$125,000-$250,000", "$80,000-$125,000","$40,000-$80,000", "Below $40,000"))), fill = (factor(president ,levels=c("Donald Trump","Howie Hawkins","Joe Biden","Jo Jorgenson")))))+
-  geom_bar(position= "fill") +
-  labs(title = "income and presidential vote",
-       x = "", y = "") +
-  scale_fill_discrete(name = "presidential vote") +
-  scale_x_discrete(na.translate = FALSE) +
-  coord_flip() +
-  theme_minimal()
-```
-
-
-
-```{r fig.height=6, fig.width=7}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(x = (factor(greek ,levels=c("Extremely interested", "Very interested", "Moderately interested", "Slightly interested", "Not interested at all"))), fill = (factor(income ,levels=c("Above $500,000","$250,000-$500,000", "$125,000-$250,000", "$80,000-$125,000","$40,000-$80,000", "Below $40,000")))))+
-  geom_bar(position= "fill") +
-  labs(title = "income and interest in greek life", 
-       x = "", y = "") +
-  scale_fill_discrete(name = "income level") +
-  coord_flip() +
-  theme_minimal()
-```
-
-```{r fig.height=6, fig.width=7}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(x = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), fill = legacy))+
-  geom_bar(position= "fill") +
-  labs(title = "political leaning and legacy status", 
-       x = "", y = "") +
-  coord_flip() +
-  theme_minimal()
-```
-
-```{r fig.height=6, fig.width=7}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(x = legacy, fill = (factor(income ,levels=c("Above $500,000","$250,000-$500,000", "$125,000-$250,000", "$80,000-$125,000","$40,000-$80,000", "Below $40,000")))))+
-  geom_bar(position= "fill") +
-  labs(title = "legacy status and income", 
-       x = "", y = "") +
-  scale_fill_discrete(name = "income level") +
-  coord_flip() +
-  theme_minimal()
-```
-
-```{r fig.height=6, fig.width=7}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(x = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), fill = sexor))+
-  geom_bar(position= "fill") +
-  labs(title = "political leaning and sexual orientation", 
-       x = "", y = "") +
-  coord_flip() +
-  theme_minimal()
-```
-
-```{r fig.height=6, fig.width=7}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(x = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), fill = finaid))+
-  geom_bar(position= "fill") +
-  labs(title = "political leaning and financial aid status", 
-       x = "", y = "") +
-  coord_flip() +
-  theme_minimal()
-```
-
-```{r fig.height=6, fig.width=7}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(x = (factor(president,levels=c("Howie Hawkins", "Jo Jorgenson", "Joe Biden","Donald Trump"))), fill = finaid))+
-  geom_bar(position= "fill") +
-  labs(title = "presidential vote and financial aid status", 
-       x = "", y = "") +
-  coord_flip() +
-  theme_minimal()
-```
-
-```{r fig.height=6, fig.width=7}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(x = major, fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative")))))+
-  geom_bar(position= "fill") +
-  labs(title = "intended major and political leaning", 
-       x = "", y = "") +
-  scale_fill_discrete(name = "political leaning") +
-  coord_flip() +
-  theme_minimal()
-```
-
-```{r fig.height=6, fig.width=7}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(x = (factor(greek ,levels=c("Extremely interested", "Very interested", "Moderately interested", "Slightly interested", "Not interested at all"))), fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative")))))+
-  geom_bar(position= "fill") +
-  labs(title = "interest in greek life & political leaning", 
-       x = "", y = "") +
-  scale_fill_discrete(name = "political leaning") +
-  coord_flip() +
-  theme_minimal()
-```
-
-```{r fig.height=6, fig.width=7}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(x = (factor(slgs ,levels=c("Extremely interested", "Very interested", "Moderately interested", "Slightly interested", "Not interested at all"))), fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative")))))+
-  geom_bar(position= "fill") +
-  labs(title = "interest in slgs & political leaning", 
-       x = "", y = "") +
-  scale_fill_discrete(name = "political leaning") +
-  coord_flip() +
-  theme_minimal()
-```
-
-```{r fig.height=6, fig.width=7}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(x = (factor(greek ,levels=c("Extremely interested", "Very interested", "Moderately interested", "Slightly interested", "Not interested at all"))), fill = sexor))+
-  geom_bar(position= "fill") +
-  labs(title = "interest in greek life & sexual orientation", 
-       x = "", y = "") +
-  scale_fill_discrete(name = "political leaning") +
-  coord_flip() +
-  theme_minimal()
-```
-
-```{r fig.height=6, fig.width=7}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(x = community, fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative")))))+
-  geom_bar(position= "fill") +
-  labs(title = "community and political leaning", 
-       x = "", y = "") +
-  scale_fill_discrete(name = "political leaning") +
-  coord_flip() +
-  theme_minimal()
-```
-
-```{r fig.height=6, fig.width=7}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(x = community, fill = (factor(president,levels=c("Howie Hawkins", "Jo Jorgenson", "Joe Biden","Donald Trump")))))+
-  geom_bar(position= "fill") +
-  labs(title = "community and presidential vote", 
-       x = "", y = "") +
-  scale_fill_discrete(name = "presidential vote") +
-  coord_flip() +
-  theme_minimal()
-```
-
-```{r fig.height=6, fig.width=7}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(x = (factor(coviddeath,levels=c("Prefer not to say", "Yes", "No"))), fill = (factor(president,levels=c("Howie Hawkins", "Jo Jorgenson", "Joe Biden","Donald Trump")))))+
-  geom_bar(position= "fill") +
-  labs(title = "family/friend death from covid and presidential vote", 
-       x = "", y = "") +
-  scale_fill_discrete(name = "presidential vote") +
-  coord_flip() +
-  theme_minimal()
-```
-
-```{r fig.height=6, fig.width=7}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(x = jobloss, fill = (factor(president,levels=c("Howie Hawkins", "Jo Jorgenson", "Joe Biden","Donald Trump")))))+
-  geom_bar(position= "fill") +
-  labs(title = "job loss from covid and presidential vote", 
-       x = "", y = "") +
-  scale_fill_discrete(name = "presidential vote") +
-  coord_flip() +
-  theme_minimal()
-```
-
-```{r fig.height=6, fig.width=7}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(x = collegecoun, fill = (factor(income ,levels=c("Above $500,000","$250,000-$500,000", "$125,000-$250,000", "$80,000-$125,000","$40,000-$80,000", "Below $40,000")))))+
-  geom_bar(position= "fill") +
-  labs(title = "hired college counselor and income", 
-       x = "", y = "") +
-  scale_fill_discrete(name = "income level") +
-  coord_flip() +
-  theme_minimal()
-```
-
-```{r fig.height=6, fig.width=7}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(x = college, fill = (factor(political, levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative")))))+
-  geom_bar(position= "fill") +
-  labs(title = "college and political leaning", 
-       x = "", y = "") +
-  scale_fill_discrete(name = "political leaning") +
-  coord_flip() +
-  theme_minimal()
-```
-
-```{r fig.height=6, fig.width=7}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(x = (factor(political, levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), fill = whyduke))+
-  geom_bar(position= "fill") +
-  labs(title = "why duke and political leaning", 
-       x = "", y = "") +
-  coord_flip() +
-  theme_minimal()
-```
-
-```{r fig.height=6, fig.width=7}
-newfirst %>% 
-  ggplot(newfirst, mapping = aes(fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), x = (factor(report, levels =c("Very likely", "Moderately likely", "Neither likely nor unlikely","Moderately unlikely", "Very unlikely")))))+
+  ggplot(data=subset(newfirst, !is.na(political)), mapping = aes(fill = (factor(political ,levels=c("Very conservative", "Somewhat conservative", "Moderate","Somewhat liberal", "Very liberal"))), x = (factor(report, levels =c("Very likely", "Moderately likely", "Neither likely nor unlikely","Moderately unlikely", "Very unlikely")))))+
   geom_bar(position= "fill") +
   labs(title = "likelihood of reporting compact violations & political leaning", 
        x = "", y = "") +
@@ -470,35 +540,48 @@ newfirst %>%
   theme_minimal()
 ```
 
+There is no pattern with regards to political leaning and likelihood of 
+reporting Duke Compact violations. However...
+
 ```{r fig.height=6, fig.width=7}
 newfirst %>% 
-  ggplot(newfirst, mapping = aes(fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), x = (factor(wearmask, levels=c("Very likely", "Moderately Likely", "Neither likely or unlikely")))))+
+  ggplot(data=subset(newfirst, !is.na(political)), mapping = aes(fill = (factor(political ,levels=c("Very conservative", "Somewhat conservative", "Moderate","Somewhat liberal", "Very liberal"))), x = (factor(wearmask, levels=c("Very likely", "Moderately Likely", "Neither likely or unlikely")))))+
   geom_bar(position= "fill") +
   labs(title = "likelihood of wearing a mask vs. political leaning", 
        x = "", y = "") +
   scale_fill_discrete(name = "political leaning") +
   coord_flip() +
+  scale_x_discrete(na.translate = FALSE) +
   theme_minimal()
 ```
 
-```{r fig.height=6, fig.width=7}
+Somewhat conservative students and Very conservative students are more likely to
+indicate that they are Moderately likely or Neither likely or unlikely to wear a
+mask...
+
+```{r fig.height=6, fig.width=7, include=FALSE}
 newfirst %>% 
-  ggplot(newfirst, mapping = aes(fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), x = (factor(usesymmon, levels=c("Very likely", "Moderately Likely", "Neither likely or unlikely", "Moderately unlikely")))))+
+  ggplot(newfirst, mapping = aes(fill = (factor(political ,levels=c("Very conservative", "Somewhat conservative", "Moderate","Somewhat liberal", "Very liberal"))), x = (factor(usesymmon, levels=c("Very likely", "Moderately Likely", "Neither likely or unlikely", "Moderately unlikely")))))+
   geom_bar(position= "fill") +
   labs(title = "likelihood of using symmon vs. political leaning", 
        x = "", y = "") +
   scale_fill_discrete(name = "political leaning") +
   coord_flip() +
+  scale_x_discrete(na.translate = FALSE) +
   theme_minimal()
 ```
 
 ```{r fig.height=6, fig.width=7}
 newfirst %>% 
-  ggplot(newfirst, mapping = aes(fill = (factor(political ,levels=c("Very liberal", "Somewhat liberal", "Moderate","Somewhat conservative", "Very conservative"))), x = (factor(avoidgather, levels =c("Very likely", "Moderately Likely", "Neither likely nor unlikely","Moderately unlikely", "Very unlikely")))))+
+  ggplot(newfirst, mapping = aes(fill = (factor(political ,levels=c("Very conservative", "Somewhat conservative", "Moderate","Somewhat liberal", "Very liberal"))), x = (factor(avoidgather, levels =c("Very likely", "Moderately Likely", "Neither likely nor unlikely","Moderately unlikely", "Very unlikely")))))+
   geom_bar(position= "fill") +
   labs(title = "likelihood of avoiding gatherings vs. political leaning", 
        x = "", y = "") +
   scale_fill_discrete(name = "political leaning") +
   coord_flip() +
+  scale_x_discrete(na.translate = FALSE) +
   theme_minimal()
 ```
+
+and Somewhat conservative and Moderate students are more likely to indicate that
+they are Very unlikely to avoid gatherings.
