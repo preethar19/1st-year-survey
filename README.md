@@ -2,7 +2,8 @@
 
 The Chronicle conducted a survey of the Class of 2024 with questions spanning lifestyles, demographics, plans and experiences at Duke, voting, impacts of COVID-19, etc. Members of the investigations department performed extensive data cleaning and analysis to analyze trends in survey responses. R was used for initial analysis and Tableau was used for final visualizations. Data was removed from this repository to protect survey respondents. 
 
-Articles were published with findings, linked here: https://www.dukechronicle.com/article/2021/01/duke-university-first-year-survey-all-coverage
+Articles were published with findings, linked here:
+https://www.dukechronicle.com/article/2021/01/duke-university-first-year-survey-all-coverage
 
 
 ## Survey Questions
